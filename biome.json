@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "!**/dist",
+      "!**/.turbo",
+      "!**/.zed",
+      "!**/.vscode",
+      "!**/routeTree.gen.ts"
+    ]
+  },
+  "extends": ["ultracite/biome/core", "ultracite/biome/react"]
+}
