@@ -19,6 +19,8 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "check-types": "turbo check-types",
+    "lint": "bun x ultracite check",
+    "format": "bun x ultracite fix",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "db:push": "turbo -F @fobos/db db:push",
