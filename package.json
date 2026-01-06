@@ -40,6 +40,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
+    "@commitlint/cli": "^20.3.0",
+    "@commitlint/config-conventional": "^20.3.0",
     "@fobos/config": "workspace:*",
     "@types/node": "catalog:",
     "husky": "latest",
