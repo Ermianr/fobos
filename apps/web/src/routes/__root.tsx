@@ -1,4 +1,9 @@
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  HeadContent,
+  Outlet,
+  Scripts,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import { Toaster } from "@/components/ui/sonner";
@@ -36,6 +41,9 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body>
+        <main>
+          <Outlet />
+        </main>
         <Toaster richColors />
         <TanStackRouterDevtools position="bottom-left" />
         <Scripts />
