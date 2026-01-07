@@ -43,6 +43,7 @@
     "@commitlint/cli": "^20.3.0",
     "@commitlint/config-conventional": "^20.3.0",
     "@fobos/config": "workspace:*",
+    "@google/genai": "^1.34.0",
     "@types/node": "catalog:",
     "husky": "latest",
     "lint-staged": "latest",
