@@ -35,10 +35,7 @@ Strict Rules:
 3. Use standard types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert.
 4. If the original message lacks a semantic tag, analyze the content and prepend the correct one.
 5. Do not include any feedback, explanations, or quotes in the response.
-<<<<<<< Updated upstream
-=======
 6. The <description> MUST be entirely in lowercase.
->>>>>>> Stashed changes
 
 Final Message:`;
 
