@@ -19,7 +19,6 @@ import type {
   GenericDatabaseReader,
   GenericDatabaseWriter,
 } from "convex/server";
-
 import {
   actionGeneric,
   httpActionGeneric,
@@ -29,7 +28,6 @@ import {
   internalMutationGeneric,
   internalQueryGeneric,
 } from "convex/server";
-
 import type { DataModel } from "./dataModel.js";
 
 /**
