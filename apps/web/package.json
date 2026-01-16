@@ -34,7 +34,7 @@
   "devDependencies": {
     "@fobos/config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.10",
-    "@types/node": "^20",
+    "@types/node": "catalog:",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "tailwindcss": "^4.1.10",
