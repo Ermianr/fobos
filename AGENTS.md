@@ -1,157 +1,137 @@
-# Ultracite Code Standards
+# Fobos Project Standards
 
-This project uses **Ultracite**, a zero-config preset that enforces strict code quality standards through automated formatting and linting.
+This project uses **Ultracite** (Oxlint + Oxfmt) for automated formatting and linting, enforcing strict code quality standards.
 
 ## Quick Reference
 
-- **Format code**: `bun x ultracite fix`
-- **Check for issues**: `bun x ultracite check`
+- **Format & fix**: `bun x ultracite fix`
+- **Check issues**: `bun x ultracite check`
+- **Type check**: `bun run check-types`
 - **Diagnose setup**: `bun x ultracite doctor`
 
-Oxlint + Oxfmt (the underlying engine) provides robust linting and formatting. Most issues are automatically fixable.
+## Build & Development Commands
+
+- `bun run dev` - Start all applications (web + backend)
+- `bun run dev:web` - Start only Next.js web app (port 3001)
+- `bun run dev:server` - Start only Convex backend
+- `bun run dev:setup` - Configure Convex project (first-time setup)
+- `bun run build` - Build all applications
+- `bun run check-types` - Type check across all packages
+
+**Note**: No test framework is currently configured. Add test scripts to package.json when implementing tests.
 
 ---
 
-## Core Principles
+## Code Style
 
-Write code that is **accessible, performant, type-safe, and maintainable**. Focus on clarity and explicit intent over brevity.
+### Formatting (Oxfmt)
 
-### Type Safety & Explicitness
+- 80 character line width
+- 2 spaces for indentation
+- Double quotes
+- Semicolons required
+- Trailing commas in ES5 style
+- Arrow parens always
 
-- Use explicit types for function parameters and return values when they enhance clarity
-- Prefer `unknown` over `any` when the type is genuinely unknown
-- Use const assertions (`as const`) for immutable values and literal types
-- Leverage TypeScript's type narrowing instead of type assertions
-- Use meaningful variable names instead of magic numbers - extract constants with descriptive names
+### Imports
 
-### Modern JavaScript/TypeScript
+- Sorted alphabetically (case-insensitive)
+- Group external, internal, and relative imports
+- Use `@/` path aliases for internal imports (e.g., `@/lib/utils`)
+- Prefer specific imports: `import { Button } from "@/components/ui/button"`
 
-- Use arrow functions for callbacks and short functions
-- Prefer `for...of` loops over `.forEach()` and indexed `for` loops
-- Use optional chaining (`?.`) and nullish coalescing (`??`) for safer property access
-- Prefer template literals over string concatenation
-- Use destructuring for object and array assignments
-- Use `const` by default, `let` only when reassignment is needed, never `var`
+### TypeScript
 
-### Async & Promises
+- Strict mode with `strictNullChecks`
+- Explicit types for function parameters and return values when clarity needed
+- Prefer `unknown` over `any`
+- Use const assertions (`as const`) for immutable literals
+- Leverage type narrowing instead of type assertions
 
-- Always `await` promises in async functions - don't forget to use the return value
-- Use `async/await` syntax instead of promise chains for better readability
-- Handle errors appropriately in async code with try-catch blocks
-- Don't use async functions as Promise executors
+### React/Next.js
 
-### React & JSX
+- Function components only
+- Use `"use client"` at top of client components
+- Server Components for async data fetching
+- App Router with async layouts
+- Specify all hook dependencies correctly
+- Use `key` prop with unique IDs in iterables
+- Children between tags, not as props
 
-- Use function components over class components
-- Call hooks at the top level only, never conditionally
-- Specify all dependencies in hook dependency arrays correctly
-- Use the `key` prop for elements in iterables (prefer unique IDs over array indices)
-- Nest children between opening and closing tags instead of passing as props
-- Don't define components inside other components
-- Use semantic HTML and ARIA attributes for accessibility:
-  - Provide meaningful alt text for images
-  - Use proper heading hierarchy
-  - Add labels for form inputs
-  - Include keyboard event handlers alongside mouse events
-  - Use semantic elements (`<button>`, `<nav>`, etc.) instead of divs with roles
+### Naming Conventions
 
-### Error Handling & Debugging
+- Components: PascalCase (`Button`, `LoginForm`)
+- Functions: camelCase (`getUser`, `handleSubmit`)
+- Constants: UPPER_SNAKE_CASE (`MAX_RETRIES`)
+- Types/Interfaces: PascalCase (`User`, `AuthContext`)
+- Private members: prefix with underscore (`_internal`)
 
-- Remove `console.log`, `debugger`, and `alert` statements from production code
-- Throw `Error` objects with descriptive messages, not strings or other values
-- Use `try-catch` blocks meaningfully - don't catch errors just to rethrow them
-- Prefer early returns over nested conditionals for error cases
+### Error Handling
 
-### Code Organization
+- Throw `Error` objects with descriptive messages
+- Use `try-catch` for async operations
+- Handle errors appropriately (toast, logging, etc.)
+- Early returns for error cases
+- Remove `console.log` from production code
 
-- Keep functions focused and under reasonable cognitive complexity limits
-- Extract complex conditions into well-named boolean variables
-- Use early returns to reduce nesting
-- Prefer simple conditionals over nested ternary operators
-- Group related code together and separate concerns
+### Component Patterns
 
-### Security
+- shadcn/ui components in `src/components/ui/`
+- Feature components in `src/features/{feature}/`
+- Server components for data fetching, client for interactivity
+- Use `cn()` utility for conditional classes
 
-- Add `rel="noopener"` when using `target="_blank"` on links
-- Avoid `dangerouslySetInnerHTML` unless absolutely necessary
-- Don't use `eval()` or assign directly to `document.cookie`
-- Validate and sanitize user input
+### Convex/Backend
 
-### Performance
-
-- Avoid spread syntax in accumulators within loops
-- Use top-level regex literals instead of creating them in loops
-- Prefer specific imports over namespace imports
-- Avoid barrel files (index files that re-export everything)
-- Use proper image components (e.g., Next.js `<Image>`) over `<img>` tags
-
-### Framework-Specific Guidance
-
-**Next.js:**
-
-- Use Next.js `<Image>` component for images
-- Use `next/head` or App Router metadata API for head elements
-- Use Server Components for async data fetching instead of async Client Components
-
-**React 19+:**
-
-- Use ref as a prop instead of `React.forwardRef`
-
-**Solid/Svelte/Vue/Qwik:**
-
-- Use `class` and `for` attributes (not `className` or `htmlFor`)
-
----
-
-## Testing
-
-- Write assertions inside `it()` or `test()` blocks
-- Avoid done callbacks in async tests - use async/await instead
-- Don't use `.only` or `.skip` in committed code
-- Keep test suites reasonably flat - avoid excessive `describe` nesting
+- Queries, mutations, and actions in `packages/backend/convex/`
+- Use `authComponent` for authentication
+- Server functions in `packages/backend/convex/_generated/` are auto-generated
 
 ---
 
 ## Conventional Commits
 
-Use Conventional Commits for all changes. Keep the subject line 72 characters or less.
+Format: `type(scope): subject`
 
-Format:
+- Subject: 72 chars max, imperative mood, no period
+- Scope: optional (e.g., `web`, `backend`, `auth`)
+- Types: `feat`, `fix`, `refactor`, `chore`, `style`, `docs`, `test`, `build`, `perf`, `ci`, `revert`
 
-`type(scope): subject`
+## Pre-commit Hooks
 
-Guidelines:
+Husky runs `bun x ultracite fix` automatically before committing. Cursor also formats after file edits.
 
-- Use the imperative mood (e.g., "add", "fix", "refactor")
-- Use a short, descriptive subject without a trailing period
-- Use a scope when it clarifies the affected area (e.g., `web`, `backend`, `auth`)
-- Prefer a single commit per logical change when possible; group changes only when they belong together
+## Key Principles
 
-Common types:
+- Clarity over brevity
+- Meaningful variable and function names
+- Extract constants for magic numbers
+- Keep functions focused and small
+- Early returns to reduce nesting
+- Prefer simple conditionals over nested ternaries
 
-- `build` - changes that affect the build system or dependencies
-- `chore` - tooling, config, or maintenance
-- `ci` - changes to CI configuration or scripts
-- `docs` - documentation only
-- `feat` - new feature
-- `fix` - bug fix
-- `perf` - performance improvement
-- `refactor` - code change that neither fixes a bug nor adds a feature
-- `revert` - reverts a previous commit
-- `style` - formatting only (no logic changes)
-- `test` - adding or updating tests
+## Post-Task Verification
 
-## When Oxlint + Oxfmt Can't Help
+**After completing any feature or task, always run:**
 
-Oxlint + Oxfmt's linter will catch most issues automatically. Focus your attention on:
+```bash
+bun x ultracite fix
+```
 
-1. **Business logic correctness** - Oxlint + Oxfmt can't validate your algorithms
-2. **Meaningful naming** - Use descriptive names for functions, variables, and types
-3. **Architecture decisions** - Component structure, data flow, and API design
-4. **Edge cases** - Handle boundary conditions and error states
-5. **User experience** - Accessibility, performance, and usability considerations
-6. **Documentation** - Add comments for complex logic, but prefer self-documenting code
+This ensures code quality and formatting compliance before committing.
 
 ---
 
-Most formatting and common issues are automatically fixed by Oxlint + Oxfmt. Run `bun x ultracite fix` before committing to ensure compliance.
+## Skills Reference
+
+Use skills when working on related tasks. Available skills:
+
+| Skill                         | Description                                                        | Documentation                                           |
+| ----------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------- |
+| `shadcn`                      | Component registry usage, examples, and integration guidance       | [SKILL.md](skills/shadcn/SKILL.md)                      |
+| `convex`                      | Convex backend best practices, database schema, queries, mutations | [SKILL.md](skills/convex/SKILL.md)                      |
+| `vercel-react-best-practices` | React and Next.js best practices and patterns                      | [SKILL.md](skills/vercel-react-best-practices/SKILL.md) |
+| `web-design-guidelines`       | Design system and UI/UX guidelines                                 | [SKILL.md](skills/web-design-guidelines/SKILL.md)       |
+| `skill-creator`               | Guide for creating new skills or updating existing ones            | [SKILL.md](skills/skill-creator/SKILL.md)               |
+
+**Always report which skills were used after completing tasks.**
