@@ -11,10 +11,14 @@
   },
   "overrides": [
     {
-      "files": ["packages/backend/convex/**/*.ts"],
+      "files": [
+        "packages/backend/convex/**/*.ts",
+        "packages/backend/convex/**/*.js"
+      ],
       "rules": {
         "jest/require-hook": "off",
-        "unicorn/filename-case": "off"
+        "unicorn/filename-case": "off",
+        "unicorn/no-abusive-eslint-disable": "off"
       }
     }
   ]

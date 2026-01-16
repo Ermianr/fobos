@@ -110,6 +110,36 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 - Don't use `.only` or `.skip` in committed code
 - Keep test suites reasonably flat - avoid excessive `describe` nesting
 
+---
+
+## Conventional Commits
+
+Use Conventional Commits for all changes. Keep the subject line 72 characters or less.
+
+Format:
+
+`type(scope): subject`
+
+Guidelines:
+
+- Use the imperative mood (e.g., "add", "fix", "refactor")
+- Use a short, descriptive subject without a trailing period
+- Use a scope when it clarifies the affected area (e.g., `web`, `backend`, `auth`)
+
+Common types:
+
+- `build` - changes that affect the build system or dependencies
+- `chore` - tooling, config, or maintenance
+- `ci` - changes to CI configuration or scripts
+- `docs` - documentation only
+- `feat` - new feature
+- `fix` - bug fix
+- `perf` - performance improvement
+- `refactor` - code change that neither fixes a bug nor adds a feature
+- `revert` - reverts a previous commit
+- `style` - formatting only (no logic changes)
+- `test` - adding or updating tests
+
 ## When Oxlint + Oxfmt Can't Help
 
 Oxlint + Oxfmt's linter will catch most issues automatically. Focus your attention on:

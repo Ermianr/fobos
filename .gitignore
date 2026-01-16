@@ -36,8 +36,6 @@ lerna-debug.log*
 # Turbo
 .turbo
 
-# Better-T-Stack
-.alchemy
 
 # Testing
 coverage
@@ -48,3 +46,4 @@ coverage
 .cache
 tmp
 temp
+TODO.txt
