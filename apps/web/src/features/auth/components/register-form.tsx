@@ -42,6 +42,7 @@ export function RegisterForm() {
           email: value.email,
           password: value.password,
           name: value.username,
+          username: value.username,
         },
         {
           onError: (error) => {
