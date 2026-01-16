@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "./node_modules/ultracite/config/oxlint/core/.oxlintrc.json",
+    "./node_modules/ultracite/config/oxlint/next/.oxlintrc.json"
+  ],
+  "rules": {
+    "import/consistent-type-specifier-style": "off",
+    "func-style": "off",
+    "sort-keys": "off"
+  },
+  "overrides": [
+    {
+      "files": ["packages/backend/convex/**/*.ts"],
+      "rules": {
+        "jest/require-hook": "off",
+        "unicorn/filename-case": "off"
+      }
+    }
+  ]
+}
