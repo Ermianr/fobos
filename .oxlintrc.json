@@ -11,15 +11,15 @@
   },
   "overrides": [
     {
-      "files": [
-        "packages/backend/convex/**/*.ts",
-        "packages/backend/convex/**/*.js"
-      ],
+      "files": ["packages/backend/convex/**/*.ts"],
       "rules": {
         "jest/require-hook": "off",
-        "unicorn/filename-case": "off",
-        "unicorn/no-abusive-eslint-disable": "off"
+        "unicorn/filename-case": "off"
       }
     }
+  ],
+  "ignorePatterns": [
+    "packages/backend/convex/_generated/**/*",
+    "packages/backend/convex/betterAuth/_generated/**/*"
   ]
 }
