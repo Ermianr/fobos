@@ -8,8 +8,9 @@
  * @module
  */
 
-import { AnyDataModel } from "convex/server";
 import type { GenericId } from "convex/values";
+
+import { AnyDataModel } from "convex/server";
 
 /**
  * No `schema.ts` file found!
