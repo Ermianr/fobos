@@ -125,6 +125,7 @@ Guidelines:
 - Use the imperative mood (e.g., "add", "fix", "refactor")
 - Use a short, descriptive subject without a trailing period
 - Use a scope when it clarifies the affected area (e.g., `web`, `backend`, `auth`)
+- Prefer a single commit per logical change when possible; group changes only when they belong together
 
 Common types:
 
